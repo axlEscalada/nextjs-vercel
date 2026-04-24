@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/app/db";
 import { todos } from "@/app/db/schema";
 import { desc } from "drizzle-orm";
+import { createTodo, InvalidTodoError } from "@/app/db/todos";
 
 export async function GET() {
   const rows = await db.select().from(todos).orderBy(desc(todos.createdAt));
@@ -11,10 +12,13 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
-  const title = body.title?.trim();
-  if (!title) {
-    return NextResponse.json({ error: "title is required" }, { status: 400 });
+  try {
+    const row = await createTodo({ title: body.title });
+    return NextResponse.json(row, { status: 201 });
+  } catch (err) {
+    if (err instanceof InvalidTodoError) {
+      return NextResponse.json({ error: err.message }, { status: 400 });
+    }
+    throw err;
   }
-  const [row] = await db.insert(todos).values({ title }).returning();
-  return NextResponse.json(row, { status: 201 });
 }
