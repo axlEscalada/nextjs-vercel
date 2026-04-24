@@ -9,14 +9,14 @@ importers:
   .:
     dependencies:
       '@autonoma-ai/sdk':
-        specifier: ^0.1.13
-        version: 0.1.13
+        specifier: ^0.2.0
+        version: 0.2.0
       '@autonoma-ai/sdk-drizzle':
-        specifier: ^0.1.13
-        version: 0.1.13(drizzle-orm@0.45.2(@types/pg@8.20.0)(pg@8.20.0))
+        specifier: ^0.2.0
+        version: 0.2.0(drizzle-orm@0.45.2(@types/pg@8.20.0)(pg@8.20.0))
       '@autonoma-ai/server-web':
-        specifier: ^0.1.13
-        version: 0.1.13
+        specifier: ^0.2.0
+        version: 0.2.0
       drizzle-orm:
         specifier: ^0.45.2
         version: 0.45.2(@types/pg@8.20.0)(pg@8.20.0)
@@ -64,16 +64,16 @@ packages:
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
     engines: {node: '>=10'}
 
-  '@autonoma-ai/sdk-drizzle@0.1.13':
-    resolution: {integrity: sha512-tGt7mRW6H7Y8RkcXRzpG/nR6mG5JXJsVKK08f5bBld6niluLLhusDJx8WHSvaWr2zmJ/qgW5npR/mumAF5Y/sQ==}
+  '@autonoma-ai/sdk-drizzle@0.2.0':
+    resolution: {integrity: sha512-Vx84pXG5zZfKzcwN+vx+Pi+o2RareYEVcH06sGpIoYjHKk0J7D3Es8NEXnDPEiWP/4uQdJa55OOU03giOYubHA==}
     peerDependencies:
       drizzle-orm: '>=0.30.0'
 
-  '@autonoma-ai/sdk@0.1.13':
-    resolution: {integrity: sha512-IUT+QZ0fJK8eVgyh1phKekQrej/6+VOZZipmuOABGpITL+A935PdSqGE3tzHDcRUPGPwgaNcQny8OMUhILGIDw==}
+  '@autonoma-ai/sdk@0.2.0':
+    resolution: {integrity: sha512-P/gJVWjPfMv5wYz8Z2mGrUfhBCIrFC1s96DwTSo7uHPpfgoDLTw+lfB9WlHnUoXW87KnNrYF8AKtL/yKJudHBA==}
 
-  '@autonoma-ai/server-web@0.1.13':
-    resolution: {integrity: sha512-bcjGmS1rmwvzzDP+Nh6XablxjUEvZAFn4cMvwq5A2WY8kZJcTy2Y5hEDK9UoTH9obzkfzxG2cXv+Tp5hEUmKog==}
+  '@autonoma-ai/server-web@0.2.0':
+    resolution: {integrity: sha512-oIlD33+xlanCJVzasEv8Ma8t3fJ87i5xWvImHYu/ysq5l5GuGnnQRWOSvpXIOtZCq8oLHuEg/21eAAHmrEFh7A==}
 
   '@drizzle-team/brocli@0.10.2':
     resolution: {integrity: sha512-z33Il7l5dKjUgGULTqBsQBQwckHh5AbIuxhdsIxDDiZAzBOrZO6q9ogcWC65kU382AfynTfgNumVcNIjuIua6w==}
@@ -1232,16 +1232,16 @@ snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
 
-  '@autonoma-ai/sdk-drizzle@0.1.13(drizzle-orm@0.45.2(@types/pg@8.20.0)(pg@8.20.0))':
+  '@autonoma-ai/sdk-drizzle@0.2.0(drizzle-orm@0.45.2(@types/pg@8.20.0)(pg@8.20.0))':
     dependencies:
-      '@autonoma-ai/sdk': 0.1.13
+      '@autonoma-ai/sdk': 0.2.0
       drizzle-orm: 0.45.2(@types/pg@8.20.0)(pg@8.20.0)
 
-  '@autonoma-ai/sdk@0.1.13': {}
+  '@autonoma-ai/sdk@0.2.0': {}
 
-  '@autonoma-ai/server-web@0.1.13':
+  '@autonoma-ai/server-web@0.2.0':
     dependencies:
-      '@autonoma-ai/sdk': 0.1.13
+      '@autonoma-ai/sdk': 0.2.0
 
   '@drizzle-team/brocli@0.10.2': {}
 
