@@ -6,6 +6,7 @@ import { createTodo, InvalidTodoError } from "@/app/db/todos";
 
 export async function GET() {
   const rows = await db.select().from(todos).orderBy(desc(todos.createdAt));
+
   return NextResponse.json(rows);
 }
 
