@@ -1,5 +1,5 @@
 import { createHandler } from "@autonoma-ai/server-web";
-import type { FactoryDefinition, SQLExecutor } from "@autonoma-ai/sdk";
+import type { SQLExecutor } from "@autonoma-ai/sdk";
 import { pool } from "@/app/db";
 import { createTodo } from "@/app/db/todos";
 
@@ -69,7 +69,7 @@ export const autonomaHandler = createHandler({
         });
         return row as Record<string, unknown>;
       },
-    } satisfies FactoryDefinition,
+    },
   },
   auth: async () => {
     // The Todo App has no auth — no sign-in, no sessions, no tokens. Return a
