@@ -1,5 +1,5 @@
 import { createHandler } from "@autonoma-ai/server-web";
-import type { SQLExecutor } from "@autonoma-ai/sdk";
+import { defineFactory, type SQLExecutor } from "@autonoma-ai/sdk";
 import { pool } from "@/app/db";
 import { createTodo } from "@/app/db/todos";
 
@@ -57,7 +57,7 @@ export const autonomaHandler = createHandler({
   signingSecret: process.env.AUTONOMA_SIGNING_SECRET ?? "my-signing-secret",
   allowProduction: true,
   factories: {
-    Todo: {
+    Todo: defineFactory({
       create: async (data) => {
         // Call the extracted production creation helper so any future business
         // logic added there (validation, audit logs, etc.) flows through the
@@ -69,7 +69,7 @@ export const autonomaHandler = createHandler({
         });
         return row as Record<string, unknown>;
       },
-    },
+    }),
   },
   auth: async () => {
     // The Todo App has no auth — no sign-in, no sessions, no tokens. Return a
