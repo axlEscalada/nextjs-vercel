@@ -1,0 +1,13 @@
+{
+  "name": "logger-service",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "tsx index.ts",
+    "start": "tsx index.ts"
+  },
+  "devDependencies": {
+    "tsx": "^4.0.0",
+    "typescript": "^5"
+  }
+}
