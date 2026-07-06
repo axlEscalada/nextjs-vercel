@@ -49,15 +49,16 @@ export const autonomaHandler = createHandler({
   scopeField: "id",
   // The SDK auto-derives model names by PascalCasing the DB table name WITHOUT
   // pluralization, so the `todos` table would map to a `Todos` model. The
-  // entity audit + scenarios speak in singular `Todo`, so map explicitly.
+  // entity audit + scenarios speak in lowercase `todos` (matching the raw
+  // table name), so map explicitly to that instead.
   tableNameMap: {
-    Todo: "todos",
+    todos: "todos",
   },
   sharedSecret: process.env.AUTONOMA_SHARED_SECRET ?? "my-shared-secret",
   signingSecret: process.env.AUTONOMA_SIGNING_SECRET ?? "my-signing-secret",
   allowProduction: true,
   factories: {
-    Todo: defineFactory({
+    todos: defineFactory({
       create: async (data) => {
         // Call the extracted production creation helper so any future business
         // logic added there (validation, audit logs, etc.) flows through the
