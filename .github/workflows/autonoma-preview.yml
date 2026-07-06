@@ -1,0 +1,30 @@
+name: Autonoma preview signal
+
+on:
+  deployment_status:
+
+jobs:
+  notify:
+    if: github.event.deployment_status.state == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify Autonoma
+        env:
+          AUTONOMA_SHARED_SECRET: ${{ secrets.AUTONOMA_SHARED_SECRET }}
+          AUTONOMA_ENDPOINT: https://05172d7c.alpha.autonoma.app/v1/onboarding/deployment-signal
+          AUTONOMA_APPLICATION_ID: cmr99ysi0000e019175sk7kwe
+          PREVIEW_URL: ${{ github.event.deployment_status.target_url }}
+          PREVIEW_SHA: ${{ github.event.deployment.sha || github.sha }}
+        run: |
+          BODY=$(jq -nc \
+            --arg applicationId "$AUTONOMA_APPLICATION_ID" \
+            --arg previewUrl "$PREVIEW_URL" \
+            --arg sha "$PREVIEW_SHA" \
+            --arg provider "vercel" \
+            '{applicationId:$applicationId,previewUrl:$previewUrl,provider:$provider}
+              + (if $sha == "" then {} else {sha:$sha} end)')
+          SIG=$(printf '%s' "$BODY" | openssl dgst -sha256 -hmac "$AUTONOMA_SHARED_SECRET" -hex | sed 's/^.* //')
+          curl -sS -X POST "$AUTONOMA_ENDPOINT" \
+            -H "content-type: application/json" \
+            -H "x-signature: $SIG" \
+            --data "$BODY"
