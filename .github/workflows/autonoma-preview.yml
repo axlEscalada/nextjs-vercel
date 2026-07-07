@@ -1,6 +1,5 @@
 name: Autonoma preview signal
 
-# Trigger workflow
 on:
   deployment_status:
 
