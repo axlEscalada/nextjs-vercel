@@ -13,7 +13,7 @@ jobs:
         env:
           AUTONOMA_SHARED_SECRET: ${{ secrets.AUTONOMA_SHARED_SECRET }}
           AUTONOMA_ENDPOINT: https://05172d7c.alpha.autonoma.app/v1/onboarding/deployment-signal
-          AUTONOMA_APPLICATION_ID: cmrbdaemh002p01aqfgh5s6o2
+          AUTONOMA_APPLICATION_ID: cmrc4g4rc000101b7a0eifgdq
           PREVIEW_URL: ${{ github.event.deployment_status.target_url }}
           PREVIEW_SHA: ${{ github.event.deployment.sha || github.sha }}
         run: |
