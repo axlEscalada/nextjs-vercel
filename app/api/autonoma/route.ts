@@ -78,6 +78,18 @@ export const autonomaHandler = createHandler({
     // use it because the app's API endpoints are unauthenticated.
     return { headers: { Authorization: "Bearer no-auth" } };
   },
+  // The `todos` table has no tenant/scope column, so the SDK's own teardown
+  // can only ever delete the handful of fixture rows a scenario's `up()`
+  // created — never the rows a test agent inserts by actually using the app
+  // (e.g. clicking "Add") during a real test run. Those rows have nowhere
+  // else to go, so they accumulate across every single test execution until
+  // the seeded "8 todos" scenario is unrecognizable. Wipe the table
+  // unconditionally before every teardown instead — there's no real
+  // multi-tenancy here to protect, so a clean slate for the next run is
+  // strictly more correct than partial, untracked cleanup.
+  beforeDown: async () => {
+    await pool.query("DELETE FROM todos");
+  },
 });
 
 export const POST = autonomaHandler;
