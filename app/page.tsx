@@ -13,6 +13,8 @@ export default function Home() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [newTitle, setNewTitle] = useState("");
   const [loading, setLoading] = useState(true);
+  const [query, setQuery] = useState("");
+  const visibleTodos = todos.filter((todo) => todo.title.toLowerCase().includes(query.toLowerCase()));
 
   async function fetchTodos() {
     const res = await fetch("/api/todos");
@@ -71,13 +73,25 @@ export default function Home() {
           </button>
         </form>
 
+        {!loading && todos.length > 0 && (
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search todos..."
+            className="w-full mb-4 px-4 py-2 rounded-lg border border-foreground/20 bg-background focus:outline-none focus:ring-2 focus:ring-foreground/30"
+          />
+        )}
+
         {loading ? (
           <p className="text-foreground/50">Loading...</p>
         ) : todos.length === 0 ? (
           <p className="text-foreground/50">No todos yet. Add one above!</p>
+        ) : visibleTodos.length === 0 ? (
+          <p className="text-foreground/50">No todos match your search.</p>
         ) : (
           <ul className="space-y-2">
-            {todos.map((todo) => (
+            {visibleTodos.map((todo) => (
               <li
                 key={todo.id}
                 className="flex items-center gap-3 p-3 rounded-lg border border-foreground/10 hover:border-foreground/20 transition-colors"
