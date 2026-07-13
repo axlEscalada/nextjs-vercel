@@ -1,4 +1,3 @@
-# .github/workflows/autonoma-preview.yml
 name: Autonoma preview signal
 
 on:
