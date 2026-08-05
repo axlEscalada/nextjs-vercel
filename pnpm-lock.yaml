@@ -9,13 +9,13 @@ importers:
   .:
     dependencies:
       '@autonoma-ai/sdk':
-        specifier: ^0.2.0
+        specifier: 0.2.0
         version: 0.2.0
       '@autonoma-ai/sdk-drizzle':
-        specifier: ^0.2.0
+        specifier: 0.2.0
         version: 0.2.0(drizzle-orm@0.45.2(@types/pg@8.20.0)(pg@8.20.0))
       '@autonoma-ai/server-web':
-        specifier: ^0.2.0
+        specifier: 0.2.0
         version: 0.2.0
       drizzle-orm:
         specifier: ^0.45.2
